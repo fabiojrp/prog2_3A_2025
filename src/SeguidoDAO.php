@@ -1,6 +1,6 @@
 <?php
 require_once "ConexaoBD.php";
-class SeguidorDAO{
+class SeguidoDAO{
 
     public static function seguir($idusuario, $idseguido) {
         $conexao = ConexaoBD::conectar();

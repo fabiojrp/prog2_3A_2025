@@ -28,7 +28,7 @@ class UsuarioDAO{
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);  
         if ($stmt->rowCount() > 0){
-            return $usuario['idusuario'];
+            return $usuario;
         }else{
             return false;
         }
@@ -63,6 +63,8 @@ class UsuarioDAO{
         WHERE u.idusuario != ? AND u.nome like ?
         AND u.idusuario NOT IN 
         (SELECT s.idseguido FROM seguidos s WHERE s.idusuario = ?);";
+
+
 
         $conexao = ConexaoBD::conectar();
         $stmt = $conexao->prepare($sql);
