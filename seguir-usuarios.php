@@ -44,8 +44,8 @@
         
         
         if (isset($_GET['nome'])){            
-            $usuarios = UsuarioDAO::buscarUsuario($_SESSION['idusuario'], $_GET['nome']);
-            //$usuarios = UsuarioDAO::buscarUsuarioParaSeguir($_SESSION['idusuario'], $_GET['nome']);
+            //$usuarios = UsuarioDAO::buscarUsuario($_SESSION['idusuario'], $_GET['nome']);
+            $usuarios = UsuarioDAO::buscarUsuarioParaSeguir($_SESSION['idusuario'], $_GET['nome']);
         }
 
         foreach ($usuarios as $usuario) {
