@@ -44,7 +44,7 @@ class UsuarioDAO{
                 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+/*
     public static function buscarUsuario($idusuario, $nome){
         $sql = "select * from usuarios where idusuario!=? and nome like ?";
 
@@ -57,13 +57,12 @@ class UsuarioDAO{
                 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+*/
     public static function buscarUsuarioParaSeguir($idusuario, $nome){
         $sql = "SELECT u.* FROM usuarios u 
         WHERE u.idusuario != ? AND u.nome like ?
         AND u.idusuario NOT IN 
         (SELECT s.idseguido FROM seguidos s WHERE s.idusuario = ?);";
-
 
 
         $conexao = ConexaoBD::conectar();
@@ -75,6 +74,18 @@ class UsuarioDAO{
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function buscarUsuarioId($idusuario)
+    {
+        $sql = "select * from usuarios where idusuario=?";
+
+        $conexao = ConexaoBD::conectar();
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindParam(1, $idusuario);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
